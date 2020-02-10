@@ -81,7 +81,6 @@ module FacebookAds
         end
         normalized_events = normalize
         ads_pixel = FacebookAds::AdsPixel.get(pixel_id)
-        Rails.logger.info(normalized_events)
         response = ads_pixel.events.create(
             {
                 data: normalized_events,
@@ -94,6 +93,7 @@ module FacebookAds
             messages: json_response_object.messages,
             fbtrace_id: json_response_object.fbtrace_id
         )
+        normalized_events
       end
 
       def normalize
