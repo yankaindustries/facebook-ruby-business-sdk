@@ -93,7 +93,6 @@ module FacebookAds
             messages: json_response_object.messages,
             fbtrace_id: json_response_object.fbtrace_id
         )
-        normalized_events
       end
 
       def normalize
