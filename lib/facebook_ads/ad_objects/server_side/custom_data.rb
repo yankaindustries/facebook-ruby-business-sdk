@@ -70,6 +70,9 @@ module FacebookAds
       # Example: 'lettuce'.
       attr_accessor :search_string
 
+      # Use for custom properties
+      # Example: {'slug' => 'annual-pass'}
+      attr_accessor :custom_properties
 
       # @param [Float] value
       # @param [String] currency
@@ -94,7 +97,8 @@ module FacebookAds
                      predicted_ltv: nil,
                      num_items: nil,
                      status: nil,
-                     search_string: nil)
+                     search_string: nil,
+                     custom_properties: nil)
 
         unless value.nil?
           self.value = value
@@ -131,6 +135,9 @@ module FacebookAds
         end
         unless search_string.nil?
           self.search_string = search_string
+        end
+        unless custom_properties.nil?
+          self.custom_properties = custom_properties
         end
       end
 
@@ -194,6 +201,10 @@ module FacebookAds
         if attributes.has_key?(:'search_string')
           self.search_string = attributes[:'search_string']
         end
+
+        if attributes.has_key?(:'custom_properties')
+          self.search_string = attributes[:'custom_properties']
+        end
       end
 
       # Checks equality by comparing each attribute.
@@ -211,7 +222,8 @@ module FacebookAds
             predicted_ltv == o.predicted_ltv &&
             num_items == o.num_items &&
             status == o.status &&
-            search_string == o.search_string
+            search_string == o.search_string &&
+            custom_properties == o.custom_properties
       end
 
       # @see the `==` method
@@ -234,7 +246,8 @@ module FacebookAds
             predicted_ltv,
             num_items,
             status,
-            search_string
+            search_string,
+            custom_properties
         ].hash
       end
 
@@ -277,6 +290,9 @@ module FacebookAds
         end
         unless search_string.nil?
           hash['search_string'] = search_string
+        end
+        unless custom_properties.nil?
+          hash['custom_properties'] = custom_properties
         end
         hash.to_s
       end
@@ -325,6 +341,10 @@ module FacebookAds
             content_array.push(content.normalize)
           end
           hash['contents'] = content_array
+        end
+
+        unless custom_properties.nil?
+          hash = hash.merge(custom_properties.stringify_keys)
         end
         hash
       end
